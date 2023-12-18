@@ -126,6 +126,8 @@ class HBNBCommand(cmd.Cmd):
         new_instance = obj_class()
         for param in args_list[1:]:
             sep = param.split('=')
+            if len(sep) != 2:
+                continue
             sep[1] = sep[1].replace('_', ' ')
             try:
                 type_attr = type(obj_class.__dict__[sep[0]])
