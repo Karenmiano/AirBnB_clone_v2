@@ -14,7 +14,7 @@ class FileStorage:
             required = {}
             for key, obj in FileStorage.__objects.items():
                 if type(obj) is cls:
-                    required.update({key:obj})
+                    required.update({key: obj})
             return required
         return FileStorage.__objects
 

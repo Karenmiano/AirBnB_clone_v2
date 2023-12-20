@@ -130,14 +130,14 @@ class HBNBCommand(cmd.Cmd):
                 continue
             sep[1] = sep[1].replace('_', ' ')
             try:
-                type_attr = type(obj_class.__dict__[sep[0]])
+                type_attr = obj_class.__dict__[sep[0]].type.python_type
                 if type_attr is str:
                     if sep[1][0] in ["'", '"'] and sep[1][-1] in ["'", '"']:
                         sep[1] = sep[1][1:-1]
                 new_instance.__dict__[sep[0]] = type_attr(sep[1])
             except Exception:
                 continue
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
 
     def help_create(self):
@@ -220,13 +220,12 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+            cls = HBNBCommand.classes[args]
+            for value in storage.all(cls).values():
+                print_list.append(str(value))
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
-
+            for value in storage.all().values():
+                print_list.append(str(value))
         print(print_list)
 
     def help_all(self):
