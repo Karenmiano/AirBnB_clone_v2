@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 continue
         new_instance.save()
-        print(new_instance.id, new_instance._sa_instance_state)
+        print(new_instance.id)
 
     def help_create(self):
         """ Help information for the create method """
