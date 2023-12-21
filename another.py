@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
                 if type_attr is str:
                     if sep[1][0] in ["'", '"'] and sep[1][-1] in ["'", '"']:
                         sep[1] = sep[1][1:-1]
-                sep[1] = HBNBCommand.escape(sep[1])   
+                # sep[1] = HBNBCommand.escape(sep[1])   
                 new_instance.__dict__[sep[0]] = type_attr(sep[1])
             except Exception:
                 continue
@@ -236,7 +236,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             for value in storage.all().values():
                 print_list.append(str(value))
-        print(print_list)
+        print('[' + ', '.join(print_list) + ']')
 
     def help_all(self):
         """ Help information for the all command """
