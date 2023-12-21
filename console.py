@@ -113,6 +113,15 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
+    @staticmethod
+    def escape(string):
+        new_str = ""
+        for letter in string:
+            if letter == '"':
+                new_str += "\\"
+            new_str += letter
+        return new_str
+
     def do_create(self, args):
         """ Create an object of any class with parameters"""
         args_list = args.split()
@@ -134,6 +143,7 @@ class HBNBCommand(cmd.Cmd):
                 if type_attr is str:
                     if sep[1][0] in ["'", '"'] and sep[1][-1] in ["'", '"']:
                         sep[1] = sep[1][1:-1]
+                sep[1] = HBNBCommand.escape(sep[1])   
                 new_instance.__dict__[sep[0]] = type_attr(sep[1])
             except Exception:
                 continue
