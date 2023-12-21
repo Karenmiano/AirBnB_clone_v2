@@ -10,7 +10,7 @@ from models.state import State
 from models.user import User
 
 # creation of a State
-state = State(name="California")
+
 state.save()
 
 # creation of a City
