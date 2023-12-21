@@ -10,7 +10,6 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -116,7 +115,6 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def escape(string):
-        """Escaping double quotes"""
         new_str = ""
         for letter in string:
             if letter == '"':
@@ -140,7 +138,15 @@ class HBNBCommand(cmd.Cmd):
             if len(sep) != 2:
                 continue
             sep[1] = sep[1].replace('_', ' ')
-
+            try:
+                type_attr = obj_class.__dict__[sep[0]].type.python_type
+                if type_attr is str:
+                    if sep[1][0] in ["'", '"'] and sep[1][-1] in ["'", '"']:
+                        sep[1] = sep[1][1:-1]
+                # sep[1] = HBNBCommand.escape(sep[1])   
+                new_instance.__dict__[sep[0]] = type_attr(sep[1])
+            except Exception:
+                continue
         new_instance.save()
         print(new_instance.id)
 
