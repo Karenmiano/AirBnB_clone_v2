@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# script that:
-#   -installs and configures nginx if not present
-#   -creates directories, files and symlinks
-#   -changes ownership of directory /data/
+# installs and configures nginx
+
 if ! command -v nginx &> /dev/null
 then
     sudo apt-get -y update
