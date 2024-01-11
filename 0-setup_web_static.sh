@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# installs and configures nginx
+# installs and configures nginx on server for web_static
 
 if ! command -v nginx &> /dev/null
 then
