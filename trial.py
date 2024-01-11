@@ -1,8 +1,6 @@
-from __future__ import with_statement
-from fabric.api import local, settings
-
-
-def trying():
-    result = local("Im not")
-    if result.failed:
-        print("Hello")
+import re
+from sys import argv
+fileregex = re.compile(r'.*/(.*\.tgz)')
+finding = fileregex.search(argv[1])
+match = finding.group(1)
+print(match)
