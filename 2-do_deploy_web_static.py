@@ -10,6 +10,7 @@ import re
 
 env.hosts = ['54.144.142.198', '54.172.80.140']
 
+
 def do_pack():
     """Create a tar gzipped archive of directory web_static"""
     now = datetime.utcnow()
