@@ -40,8 +40,8 @@ def do_deploy(archive_path):
             res4 = run(f"rm {destination}")
             res5 = sudo("rm /data/web_static/current")
             res6 = sudo(f"ln -s {decompress_to} /data/web_static/current")
-            res7 = run(f"mv {decompress_to}/web_static/* {decompress_to}/")
-            res8 = run(f"rm -rf {decompress_to}/web_static")
+            res7 = run(f"mv {decompress_to}web_static/* {decompress_to}")
+            res8 = run(f"rm -rf {decompress_to}web_static")
             results = [res1, res2, res3, res4, res5, res6, res7, res8]
             if all(result.succeeded for result in results):
                 return True
