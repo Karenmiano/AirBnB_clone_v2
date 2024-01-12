@@ -8,7 +8,7 @@ import os.path
 import re
 
 
-env.hosts = ['54.144.142.198', '54.172.80.140']
+env.hosts = ['54.172.80.140']
 
 
 def do_pack():
@@ -54,5 +54,5 @@ def deploy:
     archive = do_pack()
     if archive is None:
         return False
-    deployed = do_deploy(archive_path=archive)
+    deployed = do_deploy(file)
     return deployed
