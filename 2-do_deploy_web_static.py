@@ -8,7 +8,7 @@ import os.path
 import re
 
 
-env.hosts = ['54.144.142.198']
+env.hosts = ['54.144.142.198', '54.172.80.140']
 
 
 def do_pack():
@@ -47,4 +47,3 @@ def do_deploy(archive_path):
                 return True
             return False
     return False
-            
