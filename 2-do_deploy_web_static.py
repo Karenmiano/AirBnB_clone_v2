@@ -15,10 +15,10 @@ def do_pack():
     """Create a tar gzipped archive of directory web_static"""
     now = datetime.utcnow()
     timestamp = now.strftime("%Y%m%d%H%M%S")
-    archive_path = f"versions/web_static_{timestamp}.tgz"
+    archive_path = "versions/web_static_{}.tgz".format(timestamp)
     local("mkdir -p versions")
     with settings(warn_only=True):
-        check = local(f"tar -czvf {archive_path} web_static")
+        check = local("tar -czvf {} web_static".format(archive_path))
     if check.failed:
         return None
     else:
@@ -32,16 +32,16 @@ def do_deploy(archive_path):
             fileregex = re.compile(r'.*/?((.*)\.tgz)')
             filefind = fileregex.search(archive_path)
             file_name = filefind.group(1)
-            destination = f"/tmp/{file_name}"
+            destination = "/tmp/{}".format(file_name)
             res1 = put(archive_path, destination)
-            decompress_to = f"/data/web_static/releases/{filefind.group(2)}/"
-            res2 = run(f"mkdir -p {decompress_to}")
-            res3 = run(f"tar -xzf {destination} -C {decompress_to}")
-            res4 = run(f"rm {destination}")
-            res7 = run(f"mv -u {decompress_to}web_static/* {decompress_to}")
-            res8 = run(f"rm -rf {decompress_to}web_static")
+            decompress_to = "/data/web_static/releases/{}/".format(filefind.group(2))
+            res2 = run("mkdir -p {}".format(decompress_to))
+            res3 = run("tar -xzf {} -C {}".format(destination, decompress_to))
+            res4 = run("rm {}".format(destination))
+            res7 = run("mv -u {}web_static/* {}".format(decompress_to, decompress_to))
+            res8 = run("rm -rf {}web_static".format(decompress_to))
             res5 = run("rm -rf /data/web_static/current")
-            res6 = run(f"ln -s {decompress_to} /data/web_static/current")
+            res6 = run("ln -s {} /data/web_static/current".format(decompress_to))
             results = [res1, res2, res3, res4, res5, res6, res7, res8]
             if all(result.succeeded for result in results):
                 return True
