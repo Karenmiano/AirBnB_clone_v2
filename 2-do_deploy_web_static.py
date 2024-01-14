@@ -34,14 +34,16 @@ def do_deploy(archive_path):
             file_name = filefind.group(1)
             destination = "/tmp/{}".format(file_name)
             res1 = put(archive_path, destination)
-            decompress_to = "/data/web_static/releases/{}/".format(filefind.group(2))
-            res2 = run("mkdir -p {}".format(decompress_to))
-            res3 = run("tar -xzf {} -C {}".format(destination, decompress_to))
+            no_ext = filefind.group(2)
+            decomp_to = "/data/web_static/releases/{}/".format(no_ext)
+            res2 = run("mkdir -p {}".format(decomp_to))
+            res3 = run("tar -xzf {} -C {}".format(destination, decomp_to))
             res4 = run("rm {}".format(destination))
-            res7 = run("mv -u {}web_static/* {}".format(decompress_to, decompress_to))
-            res8 = run("rm -rf {}web_static".format(decompress_to))
+            res7 = run("mv -u {}web_static/* {}".format(decomp_to,
+                                                        decomp_to))
+            res8 = run("rm -rf {}web_static".format(decomp_to))
             res5 = run("rm -rf /data/web_static/current")
-            res6 = run("ln -s {} /data/web_static/current".format(decompress_to))
+            res6 = run("ln -s {} /data/web_static/current".format(decomp_to))
             results = [res1, res2, res3, res4, res5, res6, res7, res8]
             if all(result.succeeded for result in results):
                 return True
