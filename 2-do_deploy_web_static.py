@@ -28,7 +28,7 @@ def do_pack():
 def do_deploy(archive_path):
     """Deploy archive file to environment hosts"""
     if os.path.isfile(archive_path):
-        with settings(warn_only=True):
+        try:
             fileregex = re.compile(r'.*/?((.*)\.tgz)')
             filefind = fileregex.search(archive_path)
             file_name = filefind.group(1)
@@ -44,8 +44,7 @@ def do_deploy(archive_path):
             res8 = run("rm -rf {}web_static".format(decomp_to))
             res5 = run("rm -rf /data/web_static/current")
             res6 = run("ln -s {} /data/web_static/current".format(decomp_to))
-            results = [res1, res2, res3, res4, res5, res6, res7, res8]
-            if all(result.succeeded for result in results):
-                return True
+            return True
+        except Exception:
             return False
     return False
