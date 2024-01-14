@@ -9,6 +9,8 @@ import re
 
 
 env.hosts = ['54.144.142.198', '54.172.80.140']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/id_rsa'
 
 
 def do_pack():
@@ -27,7 +29,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """Deploy archive file to environment hosts"""
-    if os.path.isfile(archive_path):
+    if os.path.exists(archive_path):
         try:
             fileregex = re.compile(r'.*/?((.*)\.tgz)')
             filefind = fileregex.search(archive_path)
