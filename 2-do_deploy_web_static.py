@@ -29,7 +29,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """Deploy archive file to environment hosts"""
-    if os.path.exists(archive_path):
+    if os.path.exists(archive_path) is True:
         try:
             fileregex = re.compile(r'.*/?((.*)\.tgz)')
             filefind = fileregex.search(archive_path)
