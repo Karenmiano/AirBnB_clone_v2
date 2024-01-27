@@ -8,6 +8,7 @@ Serves page for:
 - "/python/<text>"
 - "/number/<n>"
 - "/number_template/<n>"
+- "/number_odd_or_even/<n>"
 """
 
 from flask import Flask, render_template
@@ -52,6 +53,13 @@ def template_number(n):
     """Displays Number: 'n' only if 'n' is an integer,
        uses html template"""
     return render_template('5-number.html', n=n)
+
+
+@app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
+def odd_even(n):
+    """Displays Number: n is even|odd only if 'n' is an integer,
+       uses html template"""
+    return render_template('6-number_odd_or_even.html', n=n)
 
 
 if __name__ == "__main__":
