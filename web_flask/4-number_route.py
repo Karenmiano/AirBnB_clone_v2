@@ -39,6 +39,7 @@ def python_is(text="is cool"):
     """accepts input from url, input is optional"""
     return f"Python {escape(text.replace('_', ' '))}"
 
+
 @app.route("/number/<int:n>", strict_slashes=False)
 def is_number(n):
     """Displays 'n' is a number only if 'n' is an integer"""
