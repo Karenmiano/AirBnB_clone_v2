@@ -16,6 +16,7 @@ def root():
     """Serves requests to the root"""
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """Serves requests to /hbnb"""
