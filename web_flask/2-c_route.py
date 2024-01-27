@@ -23,6 +23,11 @@ def hbnb():
     """Serves requests to /hbnb"""
     return "HBNB"
 
+@app.route("/c/<text>", strict_slashes=False)
+def c_is(text):
+    """accepts input from url"""
+    return f"C {escape(text.replace('_', ' '))}"
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
