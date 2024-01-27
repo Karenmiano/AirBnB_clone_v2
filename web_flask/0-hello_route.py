@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Simple Flask web application"""
+"""
+Simple Flask web application
+Serves page for "/"
+"""
 
 from flask import Flask
 
