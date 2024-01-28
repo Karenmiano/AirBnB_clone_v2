@@ -7,6 +7,7 @@ from models.user import User
 from models.review import Review
 from models.amenity import Amenity
 from sqlalchemy.orm import relationship
+import models
 
 # association table between places and amenities
 place_amenity = Table(
@@ -68,7 +69,7 @@ class Place(BaseModel, Base):
     def amenities(self):
         """returns list of amenity instances"""
         required = []
-        for obj in storage.all(Amenity).values():
+        for obj in models.storage.all(Amenity).values():
             if obj.id in Place.amenity_ids:
                 required.append(obj)
         return required
