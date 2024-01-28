@@ -31,6 +31,10 @@ class FileStorage:
                 temp[key] = val.to_dict()
             json.dump(temp, f)
 
+    def close(self):
+        """Closes current session and reloads a new one"""
+        self.reload()
+
     def delete(self, obj=None):
         """Deletes object if exists"""
         if obj:

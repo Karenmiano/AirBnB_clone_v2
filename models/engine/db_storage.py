@@ -50,6 +50,10 @@ class DBStorage:
         """Add object to current database session"""
         self.__session.add(obj)
 
+    def close(self):
+        """Removes scoped session"""
+        self.__session.close()
+
     def delete(self, obj=None):
         """Mark object for deletion in next commit"""
         if obj:
