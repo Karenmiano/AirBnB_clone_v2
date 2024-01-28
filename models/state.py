@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 import models
 from os import environ
 
+
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
@@ -16,6 +17,7 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         """Returns all cities in the state"""
+        from models.city import City
         all_cities = models.storage.all(City)
         state_cities = []
         for obj in all_cities.values():
