@@ -15,7 +15,7 @@ engine = create_engine(url, pool_pre_ping=True)
 
 Session = sessionmaker(bind=engine, expire_on_commit=False)
 session = Session()
-new_state = State(name="Some State", something="really")
+new_state = State()
 session.add(new_state)
 session.commit()
 session.close()
