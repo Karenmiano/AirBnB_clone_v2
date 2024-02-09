@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../Flask_Blog"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../alx-system_engineering-devops"
+		}
+	],
+	"settings": {}
+}
